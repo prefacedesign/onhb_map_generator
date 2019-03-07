@@ -1,0 +1,13 @@
+$pad: 18px;
+
+body {
+  min-height: 1080px;
+  min-width: 1080px;
+  background: #ddd;
+}
+
+.canv {
+  margin: $pad;
+  transform-origin: left top;
+  transform: scale(0.5);
+}
