@@ -40,3 +40,16 @@ body {
     }
   }
 }
+
+#save {
+  background: black;
+  color: white;
+  border: none;
+  border-radius: $pad / 2;
+  padding: $pad/2 $pad;
+  font-family: monospace;
+  font-size: 20px;
+  position: fixed;
+  bottom: $pad;
+  left: $pad;
+}

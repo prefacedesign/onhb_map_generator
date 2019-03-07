@@ -161,3 +161,7 @@ function calcSum() {
   });
   return s;
 }
+
+function saveImg() {
+  saveCanvas(canvas, "mapa_onhb", "png");
+}
