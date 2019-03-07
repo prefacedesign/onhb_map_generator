@@ -1,4 +1,5 @@
 var canvas;
+let debug = true;
 
 var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
@@ -31,11 +32,11 @@ var state_list = [
 ];
 
 let tints = {
-  N: [43, 181, 48],
+  N: [255, 38, 150],
   NE: [255, 38, 150],
-  CO: [162, 48, 255],
-  SE: [252, 6, 31],
-  S: [54, 233, 194]
+  CO: [255, 38, 150],
+  SE: [255, 38, 150],
+  S: [255, 38, 150]
 };
 
 let myFont;
@@ -55,7 +56,11 @@ function setup() {
   frameRate(1);
   textAlign(CENTER);
   textFont(myFont);
-  textSize(18);
+  textSize(20);
+}
+
+function sLog(v) {
+  return Math.log(v); // / Math.log(1.5);
 }
 
 function draw() {
@@ -69,15 +74,30 @@ function draw() {
   state_list.forEach(function(element) {
     if (!element.el) {
       element.el = document.getElementById(element.state);
+      if (element.el.value == "" && debug) {
+        let v;
+        if (Math.random() < 4 / 27) {
+          v = parseInt(Math.random() * 3000);
+        } else {
+          v = parseInt(Math.random() * 800);
+        }
+
+        element.el.value = v;
+      }
     }
     if (element.el.value != "") {
       if (element.img && isNumeric(element.el.value)) {
-        let min = 0.2;
+        let min = 0.0;
         let range = 1.0 - min;
-        let opacity =
-          parseInt((parseInt(element.el.value) / max.geral) * 5) / 5; // flattens it to 5 values
+
+        let v = parseInt(element.el.value);
+        let v_lin = v / max.geral;
+        let v_log = sLog(v) / sLog(max.geral);
+
+        let opacity = v_lin * 0.3 + v_log * 0.7;
         opacity = opacity * range + min;
-        t = tints[element.region];
+
+        let t = tints[element.region];
         tint([t[0], t[1], t[2], opacity * 255]);
         image(element.img, 0, 0);
       }
@@ -111,11 +131,12 @@ function findMax() {
   state_list.forEach(function(element) {
     if (element.el) {
       if (isNumeric(element.el.value)) {
-        if (parseInt(element.el.value) > m[element.region]) {
-          m[element.region] = parseInt(element.el.value);
+        let v = parseInt(element.el.value);
+        if (v > m[element.region]) {
+          m[element.region] = v;
         }
-        if (parseInt(element.el.value) > m.geral) {
-          m.geral = parseInt(element.el.value);
+        if (v > m.geral) {
+          m.geral = v;
         }
       }
     }
