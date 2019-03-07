@@ -44,7 +44,7 @@ function preload() {
 function setup() {
   canvas = createCanvas(1080, 1080);
   canvas.class("canv");
-  // frameRate(1);
+  frameRate(1);
   textAlign(CENTER);
   textFont(myFont);
   textSize(18);
@@ -52,6 +52,8 @@ function setup() {
 
 function draw() {
   background(0);
+  let total = calcTotal();
+  tint(255, 255);
   image(brazil, 0, 0);
   state_list.forEach(function(element) {
     if (!element.el) {
@@ -61,7 +63,11 @@ function draw() {
       fill(80);
       text(element.state, element.x, element.y);
     } else {
-      if (element.img) {
+      if (element.img && isNumeric(element.el.value)) {
+        let min = 0.2;
+        let range = 1.0 - min;
+        let opacity = (parseInt(element.el.value) / total) * range + min;
+        tint(255, opacity * 255);
         image(element.img, 0, 0);
       }
       fill(255);
@@ -70,6 +76,18 @@ function draw() {
   });
 }
 
-// function calcTotal() {
-//   state_list.forEach;
-// }
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function calcTotal() {
+  let s = 0;
+  state_list.forEach(function(element) {
+    if (element.el) {
+      if (isNumeric(element.el.value)) {
+        s += parseInt(element.el.value);
+      }
+    }
+  });
+  return s;
+}
