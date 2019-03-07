@@ -55,21 +55,28 @@ function draw() {
   let max = findMax();
   tint(255, 255);
   image(brazil, 0, 0);
+
+  // background color
   state_list.forEach(function(element) {
     if (!element.el) {
       element.el = document.getElementById(element.state);
     }
-    if (element.el.value == "") {
-      fill(80);
-      text(element.state, element.x, element.y);
-    } else {
+    if (element.el.value != "") {
       if (element.img && isNumeric(element.el.value)) {
-        let min = 0.1;
+        let min = 0.05;
         let range = 1.0 - min;
         let opacity = (parseInt(element.el.value) / max) * range + min;
         tint(255, opacity * 255);
         image(element.img, 0, 0);
       }
+    }
+  });
+  // numbers
+  state_list.forEach(function(element) {
+    if (element.el.value == "") {
+      fill(80);
+      text(element.state, element.x, element.y);
+    } else {
       fill(255);
       text(element.el.value, element.x, element.y);
     }
