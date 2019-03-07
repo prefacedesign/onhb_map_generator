@@ -30,11 +30,18 @@ var state_list = [
   { state: "TO", x: 652, y: 455 }
 ];
 
+let myFont;
+function preload() {
+  myFont = loadFont("assets/CooperHewitt-Bold.otf");
+}
+
 function setup() {
   canvas = createCanvas(1080, 1080);
   canvas.class("canv");
   frameRate(1);
   textAlign(CENTER);
+  textFont(myFont);
+  textSize(25);
 }
 
 function draw() {
