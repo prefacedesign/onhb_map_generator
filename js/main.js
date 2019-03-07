@@ -54,7 +54,7 @@ function draw() {
   background(0);
   let max = findMax();
   tint(255, 255);
-  // image(brazil, 0, 0);
+  image(brazil, 0, 0);
   state_list.forEach(function(element) {
     if (!element.el) {
       element.el = document.getElementById(element.state);
