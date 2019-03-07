@@ -162,6 +162,6 @@ function calcSum() {
   return s;
 }
 
-function saveImg() {
+function saveThisMap() {
   saveCanvas(canvas, "mapa_onhb", "png");
 }
