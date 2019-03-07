@@ -61,6 +61,7 @@ function setup() {
 function draw() {
   background(0);
   let max = findMax();
+  // let sum = calcSum();
   tint(255, 255);
   image(brazil, 0, 0);
 
@@ -118,12 +119,18 @@ function findMax() {
   return m;
 }
 
-function calcTotal() {
-  let s = 0;
+function calcSum() {
+  let s = {
+    N: 0,
+    NE: 0,
+    CO: 0,
+    SE: 0,
+    S: 0
+  };
   state_list.forEach(function(element) {
     if (element.el) {
       if (isNumeric(element.el.value)) {
-        s += parseInt(element.el.value);
+        s[element.region] += parseInt(element.el.value);
       }
     }
   });
