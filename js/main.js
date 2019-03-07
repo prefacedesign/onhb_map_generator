@@ -64,7 +64,7 @@ function draw() {
       text(element.state, element.x, element.y);
     } else {
       if (element.img && isNumeric(element.el.value)) {
-        let min = 0.3;
+        let min = 0.1;
         let range = 1.0 - min;
         let opacity = (parseInt(element.el.value) / max) * range + min;
         tint(255, opacity * 255);
