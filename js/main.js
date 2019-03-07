@@ -38,17 +38,22 @@ function preload() {
 function setup() {
   canvas = createCanvas(1080, 1080);
   canvas.class("canv");
-  frameRate(1);
+  // frameRate(1);
   textAlign(CENTER);
   textFont(myFont);
-  textSize(25);
+  textSize(18);
 }
 
 function draw() {
   background(0);
-  fill(255);
   state_list.forEach(function(element) {
     let el = document.getElementById(element.state);
-    text(element.state, element.x, element.y);
+    if (el.value == "") {
+      fill(80);
+      text(element.state, element.x, element.y);
+    } else {
+      fill(255);
+      text(el.value, element.x, element.y);
+    }
   });
 }
