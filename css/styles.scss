@@ -4,10 +4,39 @@ body {
   min-height: 1080px;
   min-width: 1080px;
   background: #ddd;
+
+  font-family: monospace;
 }
 
 .canv {
   margin: $pad;
   transform-origin: left top;
   transform: scale(0.5);
+}
+
+.states {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: $pad;
+
+  background: palegoldenrod;
+
+  label {
+    & + label {
+      margin-top: $pad/4;
+    }
+    input {
+      border: none;
+      border-radius: $pad / 8;
+      font-family: monospace;
+      padding: $pad/6 $pad/4;
+      width: $pad * 4;
+    }
+  }
 }
