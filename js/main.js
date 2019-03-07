@@ -31,8 +31,14 @@ var state_list = [
 ];
 
 let myFont;
+let brazil;
+
 function preload() {
   myFont = loadFont("assets/CooperHewitt-Bold.otf");
+  state_list.forEach(function(element) {
+    element.img = loadImage("assets/" + element.state + ".png");
+  });
+  brazil = loadImage("assets/brazil.png");
 }
 
 function setup() {
@@ -46,6 +52,7 @@ function setup() {
 
 function draw() {
   background(0);
+  image(brazil, 0, 0);
   state_list.forEach(function(element) {
     if (!element.el) {
       element.el = document.getElementById(element.state);
@@ -54,8 +61,15 @@ function draw() {
       fill(80);
       text(element.state, element.x, element.y);
     } else {
+      if (element.img) {
+        image(element.img, 0, 0);
+      }
       fill(255);
       text(element.el.value, element.x, element.y);
     }
   });
 }
+
+// function calcTotal() {
+//   state_list.forEach;
+// }
