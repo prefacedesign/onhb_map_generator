@@ -52,9 +52,9 @@ function setup() {
 
 function draw() {
   background(0);
-  let total = calcTotal();
+  let max = findMax();
   tint(255, 255);
-  image(brazil, 0, 0);
+  // image(brazil, 0, 0);
   state_list.forEach(function(element) {
     if (!element.el) {
       element.el = document.getElementById(element.state);
@@ -64,9 +64,9 @@ function draw() {
       text(element.state, element.x, element.y);
     } else {
       if (element.img && isNumeric(element.el.value)) {
-        let min = 0.2;
+        let min = 0.3;
         let range = 1.0 - min;
-        let opacity = (parseInt(element.el.value) / total) * range + min;
+        let opacity = (parseInt(element.el.value) / max) * range + min;
         tint(255, opacity * 255);
         image(element.img, 0, 0);
       }
@@ -78,6 +78,18 @@ function draw() {
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function findMax() {
+  let m = 0;
+  state_list.forEach(function(element) {
+    if (element.el) {
+      if (isNumeric(element.el.value) && parseInt(element.el.value) > m) {
+        m = parseInt(element.el.value);
+      }
+    }
+  });
+  return m;
 }
 
 function calcTotal() {
