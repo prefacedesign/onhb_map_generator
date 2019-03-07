@@ -31,11 +31,11 @@ var state_list = [
 ];
 
 let tints = {
-  N: [255, 0, 0],
-  NE: [255, 0, 255],
-  CO: [255, 255, 0],
-  SE: [0, 255, 0],
-  S: [0, 0, 255]
+  N: [43, 181, 48],
+  NE: [255, 38, 150],
+  CO: [162, 48, 255],
+  SE: [252, 6, 31],
+  S: [54, 233, 194]
 };
 
 let myFont;
@@ -72,10 +72,11 @@ function draw() {
     }
     if (element.el.value != "") {
       if (element.img && isNumeric(element.el.value)) {
-        let min = 0.05;
+        let min = 0.2;
         let range = 1.0 - min;
         let opacity =
-          (parseInt(element.el.value) / max[element.region]) * range + min;
+          parseInt((parseInt(element.el.value) / max.geral) * 5) / 5; // flattens it to 5 values
+        opacity = opacity * range + min;
         t = tints[element.region];
         tint([t[0], t[1], t[2], opacity * 255]);
         image(element.img, 0, 0);
@@ -104,15 +105,18 @@ function findMax() {
     NE: 0,
     CO: 0,
     SE: 0,
-    S: 0
+    S: 0,
+    geral: 0
   };
   state_list.forEach(function(element) {
     if (element.el) {
-      if (
-        isNumeric(element.el.value) &&
-        parseInt(element.el.value) > m[element.region]
-      ) {
-        m[element.region] = parseInt(element.el.value);
+      if (isNumeric(element.el.value)) {
+        if (parseInt(element.el.value) > m[element.region]) {
+          m[element.region] = parseInt(element.el.value);
+        }
+        if (parseInt(element.el.value) > m.geral) {
+          m.geral = parseInt(element.el.value);
+        }
       }
     }
   });
