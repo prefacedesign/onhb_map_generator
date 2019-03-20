@@ -1,5 +1,5 @@
 var canvas;
-let debug = true;
+let debug = false;
 
 var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
