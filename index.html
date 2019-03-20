@@ -124,14 +124,15 @@
         TO
         <input type="text" id="TO" />
       </label>
-    </div>
+      <div id="button-container">
+        <button id="map-generator-button" disabled onclick="generateMap();">
+          Gera mapa
+        </button>
 
-    <div id="button-container">
-      <button id="map-generator-button" disabled onclick="generateMap();">
-        Gera mapa
-      </button>
-
-      <button id="save-button" disabled onclick="saveThisMap();">Salva!</button>
+        <button id="save-button" disabled onclick="saveThisMap();">
+          Salva!
+        </button>
+      </div>
     </div>
 
     <script

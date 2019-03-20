@@ -12,10 +12,10 @@ body {
 
 .canv {
   margin: $pad;
-  transform-origin: right top;
+  transform-origin: left top;
   transform: scale(0.6);
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   z-index: 0;
 }
@@ -23,7 +23,7 @@ body {
 .states {
   position: fixed;
   z-index: 1;
-  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
   overflow-y: auto;
@@ -66,7 +66,10 @@ body {
     padding: $pad/2 $pad;
     font-family: "IBM Plex Mono", monospace;
     font-size: 20px;
-    margin-left: $pad;
+    width: calc(100% - #{$pad/2});
+    & + button {
+      margin-left: $pad;
+    }
 
     opacity: 1;
     transition: opacity 1s ease;
@@ -77,10 +80,9 @@ body {
       opacity: 0.2;
     }
   }
-
-  position: fixed;
-  bottom: $pad;
-  right: $pad;
+  grid-column: 1 / 5;
+  grid-row: 10; // leaves 2 empty rows between this and the inputs
+  width: 100%;
   display: flex;
   z-index: 2;
 }
