@@ -140,7 +140,7 @@ function sLog(v) {
   return Math.log(v); // / Math.log(1.5);
 }
 
-function comparteStates(a, b) {
+function compareStates(a, b) {
   let vA = a.el.value ? parseInt(a.el.value) : null;
   let vB = b.el.value ? parseInt(b.el.value) : null;
   if ((vA && !vB) || vA > vB) {
@@ -150,18 +150,6 @@ function comparteStates(a, b) {
     return -1;
   }
   return 0;
-}
-
-function countStateGroups() {
-  let n = 0;
-  state_list.forEach(function(element, i) {
-    if (i > 0) {
-      if (element.el.value && element.el.value != state_list[i - 1].el.value) {
-        n++;
-      }
-    }
-  });
-  return n;
 }
 
 function convertRange(value, r_a_min, r_a_max, r_b_min, r_b_max) {
@@ -190,12 +178,10 @@ function draw() {
       console.log("...the states...");
     }
 
-    state_list.sort(comparteStates);
-    let n_state_groups = countStateGroups();
+    state_list.sort(compareStates);
     state_list.forEach(function(element, i) {
-      i_state_group = convertRange(i, 0, state_list.length, 0, n_state_groups);
       i_color = Math.floor(
-        convertRange(i_state_group, 0, n_state_groups, 0, colors.length)
+        convertRange(i, 0, state_list.length, 0, colors.length)
       );
       if (element.el.value != "") {
         if (element.img && isNumeric(element.el.value)) {
