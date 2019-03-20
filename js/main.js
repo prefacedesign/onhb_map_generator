@@ -31,6 +31,21 @@ var state_list = [
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
 ];
 
+// https://hihayk.github.io/scale/#7/3/34/54/20/-72/70/-41/cb0772/203/7/114
+let colors = [
+  "#6C1F62",
+  "#771D68",
+  "#841B6D",
+  "#911871",
+  "#9F1574",
+  "#AD1175",
+  "#BC0C74",
+  "#CB0772",
+  "#E72E3E",
+  "#FB725C",
+  "#FFD28A"
+];
+
 let loaded_imgs = 0;
 let started = false;
 
@@ -82,6 +97,37 @@ function sLog(v) {
   return Math.log(v); // / Math.log(1.5);
 }
 
+function comparteStates(a, b) {
+  let vA = a.el.value ? parseInt(a.el.value) : null;
+  let vB = b.el.value ? parseInt(b.el.value) : null;
+  if ((vA && !vB) || vA > vB) {
+    return 1;
+  }
+  if ((vB && !vA) || vB > vA) {
+    return -1;
+  }
+  return 0;
+}
+
+function countStateGroups() {
+  let n = 0;
+  state_list.forEach(function(element, i) {
+    if (i > 0) {
+      if (element.el.value && element.el.value != state_list[i - 1].el.value) {
+        n++;
+      }
+    }
+  });
+  return n;
+}
+
+function convertRange(value, r_a_min, r_a_max, r_b_min, r_b_max) {
+  let range_a = r_a_max - r_a_min;
+  let range_b = r_b_max - r_b_min;
+  let new_value = ((value - r_a_min) * range_b) / range_a + r_b_min;
+  return new_value;
+}
+
 function draw() {
   if (started) {
     if (debug) {
@@ -100,20 +146,17 @@ function draw() {
     if (debug) {
       console.log("...the states...");
     }
-    state_list.forEach(function(element) {
+
+    state_list.sort(comparteStates);
+    let n_state_groups = countStateGroups();
+    state_list.forEach(function(element, i) {
+      i_state_group = convertRange(i, 0, state_list.length, 0, n_state_groups);
+      i_color = Math.floor(
+        convertRange(i_state_group, 0, n_state_groups, 0, colors.length)
+      );
       if (element.el.value != "") {
         if (element.img && isNumeric(element.el.value)) {
-          let min = 0.0;
-          let range = 1.0 - min;
-          let v = parseInt(element.el.value);
-          let v_lin = v / max.geral;
-          let v_log = sLog(v) / sLog(max.geral);
-
-          let opacity = v_lin * 0.3 + v_log * 0.7;
-          opacity = opacity * range + min;
-
-          let t = tints[element.region];
-          tint([t[0], t[1], t[2], opacity * 255]);
+          tint(color(colors[i_color]));
           image(element.img, 0, 0);
         }
       }
