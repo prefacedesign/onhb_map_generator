@@ -94,7 +94,6 @@ function setup() {
   canvas.class("canv");
   textAlign(CENTER);
   textFont(myFont);
-  textSize(20);
 }
 
 function sLog(v) {
@@ -155,7 +154,10 @@ function draw() {
     if (debug) {
       console.log("...and the numbers");
     }
-    state_list.forEach(function(element) {
+    state_list.forEach(function(element, i) {
+      let tS =
+        15 + Math.round(convertRange(i, 0, state_list.length, 0, 1) * 10);
+      textSize(tS);
       if (element.el.value == "") {
         fill(80);
         text(element.state, element.x, element.y);
