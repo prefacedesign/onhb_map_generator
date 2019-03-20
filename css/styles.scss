@@ -39,10 +39,7 @@ body {
 
   label {
     text-align: center;
-    & + label {
-      margin-top: $pad/4;
-      font-size: 15px;
-    }
+    font-size: 15px;
     input {
       display: block;
       border: none;
