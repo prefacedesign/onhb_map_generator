@@ -46,6 +46,16 @@ function preload() {
   myFont = loadFont("assets/CooperHewitt-Bold.otf");
   state_list.forEach(function(element) {
     element.img = loadImage("assets/" + element.state + ".png");
+    element.el = document.getElementById(element.state);
+    if (element.el.value == "" && debug) {
+      let v;
+      if (Math.random() < 4 / 27) {
+        v = parseInt(Math.random() * 3000);
+      } else {
+        v = parseInt(Math.random() * 800);
+      }
+      element.el.value = v;
+    }
   });
   brazil = loadImage("assets/brazil.png");
 }
@@ -64,55 +74,63 @@ function sLog(v) {
 }
 
 function draw() {
-  background(0);
-  let max = findMax();
-  // let sum = calcSum();
-  tint(255, 255);
-  image(brazil, 0, 0);
+  if (canDraw()) {
+    background(0);
+    let max = findMax();
+    tint(255, 255);
+    image(brazil, 0, 0);
 
-  // background color
-  state_list.forEach(function(element) {
-    if (!element.el) {
-      element.el = document.getElementById(element.state);
-      if (element.el.value == "" && debug) {
-        let v;
-        if (Math.random() < 4 / 27) {
-          v = parseInt(Math.random() * 3000);
-        } else {
-          v = parseInt(Math.random() * 800);
+    // background color
+    state_list.forEach(function(element) {
+      if (element.el.value != "") {
+        if (element.img && isNumeric(element.el.value)) {
+          let min = 0.0;
+          let range = 1.0 - min;
+          let v = parseInt(element.el.value);
+          let v_lin = v / max.geral;
+          let v_log = sLog(v) / sLog(max.geral);
+
+          let opacity = v_lin * 0.3 + v_log * 0.7;
+          opacity = opacity * range + min;
+
+          let t = tints[element.region];
+          tint([t[0], t[1], t[2], opacity * 255]);
+          image(element.img, 0, 0);
         }
-
-        element.el.value = v;
       }
-    }
-    if (element.el.value != "") {
-      if (element.img && isNumeric(element.el.value)) {
-        let min = 0.0;
-        let range = 1.0 - min;
-
-        let v = parseInt(element.el.value);
-        let v_lin = v / max.geral;
-        let v_log = sLog(v) / sLog(max.geral);
-
-        let opacity = v_lin * 0.3 + v_log * 0.7;
-        opacity = opacity * range + min;
-
-        let t = tints[element.region];
-        tint([t[0], t[1], t[2], opacity * 255]);
-        image(element.img, 0, 0);
+    });
+    // numbers
+    state_list.forEach(function(element) {
+      if (element.el.value == "") {
+        fill(80);
+        text(element.state, element.x, element.y);
+      } else {
+        fill(255);
+        text(element.el.value, element.x, element.y);
       }
-    }
-  });
-  // numbers
+    });
+  } else {
+    console.log("can't draw yet");
+  }
+
+  noLoop();
+}
+
+function canDraw() {
+  let can_draw = true;
+
   state_list.forEach(function(element) {
-    if (element.el.value == "") {
-      fill(80);
-      text(element.state, element.x, element.y);
-    } else {
-      fill(255);
-      text(element.el.value, element.x, element.y);
+    if (!element.img) {
+      can_draw = false;
+      console.log("couldn't draw " + element.state);
     }
   });
+
+  return can_draw;
+}
+
+function generateMap() {
+  loop();
 }
 
 function isNumeric(n) {
