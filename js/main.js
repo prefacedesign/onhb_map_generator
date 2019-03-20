@@ -31,7 +31,7 @@ var state_list = [
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
 ];
 
-// https://hihayk.github.io/scale/#3/3/69/49/0/0/54/25/cb0772/203/7/114
+// // https://hihayk.github.io/scale/#3/3/69/49/0/0/54/25/cb0772/203/7/114
 let colors = [
   "#470024",
   "#470024",
@@ -49,6 +49,25 @@ let colors = [
   // "#F453A2",
   "#FF7DBA"
 ];
+
+// https://hihayk.github.io/scale/#6/1/86/49/251/0/100/100/cb0772/203/7/114
+// let colors = [
+//   "#1B2400",
+//   "#1B2400",
+//   "#004800",
+//   "#004800",
+//   "#006D44",
+//   "#006D44",
+//   "#005390",
+//   "#005390",
+//   "#0000A8",
+//   "#0000A8",
+//   "#8C00BC",
+//   "#8C00BC",
+//   "#CB0772",
+//   "#CB0772",
+//   "#FF7DBC"
+// ];
 
 let loaded_imgs = 0;
 let started = false;
@@ -94,6 +113,7 @@ function setup() {
   canvas.class("canv");
   textAlign(CENTER);
   textFont(myFont);
+  textSize(24);
 }
 
 function sLog(v) {
@@ -155,9 +175,6 @@ function draw() {
       console.log("...and the numbers");
     }
     state_list.forEach(function(element, i) {
-      let tS =
-        15 + Math.round(convertRange(i, 0, state_list.length, 0, 1) * 10);
-      textSize(tS);
       if (element.el.value == "") {
         fill(80);
         text(element.state, element.x, element.y);
