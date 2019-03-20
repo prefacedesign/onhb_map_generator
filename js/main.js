@@ -184,6 +184,9 @@ function draw() {
       }
 
       console.log("p5js has finished drawing the map");
+      if (document.getElementById("save-button").disabled) {
+        document.getElementById("save-button").disabled = false;
+      }
     });
   } else {
     console.log("can't draw yet");
