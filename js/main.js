@@ -31,6 +31,9 @@ var state_list = [
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
 ];
 
+let loaded_imgs = 0;
+let started = false;
+
 let tints = {
   N: [255, 38, 150],
   NE: [255, 38, 150],
@@ -45,7 +48,14 @@ let brazil;
 function preload() {
   myFont = loadFont("assets/CooperHewitt-Bold.otf");
   state_list.forEach(function(element) {
-    element.img = loadImage("assets/" + element.state + ".png");
+    element.img = loadImage("assets/" + element.state + ".png", img => {
+      loaded_imgs++;
+
+      // has loaded all images
+      if (loaded_imgs == state_list.length) {
+        document.getElementById("map-generator-button").disabled = false;
+      }
+    });
     element.el = document.getElementById(element.state);
     if (element.el.value == "" && debug) {
       let v;
@@ -63,7 +73,6 @@ function preload() {
 function setup() {
   canvas = createCanvas(1080, 1080);
   canvas.class("canv");
-  frameRate(1);
   textAlign(CENTER);
   textFont(myFont);
   textSize(20);
@@ -74,13 +83,23 @@ function sLog(v) {
 }
 
 function draw() {
-  if (canDraw()) {
+  if (started) {
+    if (debug) {
+      console.log("will begin drawing the map...");
+    }
     background(0);
     let max = findMax();
     tint(255, 255);
+
+    if (debug) {
+      console.log("...the background image...");
+    }
     image(brazil, 0, 0);
 
     // background color
+    if (debug) {
+      console.log("...the states...");
+    }
     state_list.forEach(function(element) {
       if (element.el.value != "") {
         if (element.img && isNumeric(element.el.value)) {
@@ -100,6 +119,9 @@ function draw() {
       }
     });
     // numbers
+    if (debug) {
+      console.log("...and the numbers");
+    }
     state_list.forEach(function(element) {
       if (element.el.value == "") {
         fill(80);
@@ -108,6 +130,8 @@ function draw() {
         fill(255);
         text(element.el.value, element.x, element.y);
       }
+
+      console.log("p5js has finished drawing the map");
     });
   } else {
     console.log("can't draw yet");
@@ -130,7 +154,10 @@ function canDraw() {
 }
 
 function generateMap() {
-  loop();
+  if (canDraw()) {
+    started = true;
+    loop();
+  }
 }
 
 function isNumeric(n) {
