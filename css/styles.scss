@@ -3,40 +3,56 @@ $pad: 18px;
 body {
   // min-height: 1080px;
   // min-width: 1080px;
-  background: #ddd;
+  background: #ccc;
 
-  font-family: monospace;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 13px;
+  overflow-y: hidden;
 }
 
 .canv {
   margin: $pad;
-  transform-origin: left top;
-  transform: scale(0.5);
+  transform-origin: right top;
+  transform: scale(0.6);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 0;
 }
 
 .states {
   position: fixed;
-  right: 0;
+  z-index: 1;
+  left: 0;
   top: 0;
   bottom: 0;
+  overflow-y: auto;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: $pad;
+  justify-items: center;
+  align-items: center;
   padding: $pad;
 
-  background: palegoldenrod;
+  background: #eee;
 
   label {
+    text-align: center;
     & + label {
       margin-top: $pad/4;
+      font-size: 15px;
     }
     input {
+      display: block;
       border: none;
       border-radius: $pad / 8;
-      font-family: monospace;
-      padding: $pad/6 $pad/4;
-      width: $pad * 4;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 15px;
+      padding: $pad/3 0;
+      margin-top: $pad/2;
+      text-align: center;
+      max-width: $pad * 4;
     }
   }
 }
@@ -48,9 +64,9 @@ body {
     border: none;
     border-radius: $pad / 2;
     padding: $pad/2 $pad;
-    font-family: monospace;
+    font-family: "IBM Plex Mono", monospace;
     font-size: 20px;
-    margin-right: $pad;
+    margin-left: $pad;
 
     opacity: 1;
     transition: opacity 1s ease;
@@ -64,6 +80,7 @@ body {
 
   position: fixed;
   bottom: $pad;
-  left: $pad;
+  right: $pad;
   display: flex;
+  z-index: 2;
 }
