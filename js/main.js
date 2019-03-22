@@ -1,5 +1,5 @@
 var canvas;
-let debug = false;
+let debug = true;
 
 var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
@@ -31,43 +31,30 @@ var state_list = [
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
 ];
 
-// // https://hihayk.github.io/scale/#3/3/69/49/0/0/54/25/cb0772/203/7/114
 let colors = [
-  "#470024",
-  "#470024",
-  "#470024",
-  "#76003E",
-  "#76003E",
-  "#76003E",
-  "#A30058",
-  "#A30058",
-  "#A30058",
+  "#fbb040",
+  "#fbb040",
+  "#fbb040",
+  "#F39448",
+  "#F39448",
+  "#F39448",
+  "#EB7851",
+  "#EB7851",
+  "#EB7851",
+  "#E35C59",
+  "#E35C59",
+  "#E35C59",
+  "#DB3F61",
+  "#DB3F61",
+  "#DB3F61",
+  "#D3236A",
+  "#D3236A",
+  "#D3236A",
   "#CB0772",
   "#CB0772",
   "#CB0772",
-  "#E22A8A",
-  // "#F453A2",
-  "#FF7DBA"
+  "#FD7FBB"
 ];
-
-// https://hihayk.github.io/scale/#6/1/86/49/251/0/100/100/cb0772/203/7/114
-// let colors = [
-//   "#1B2400",
-//   "#1B2400",
-//   "#004800",
-//   "#004800",
-//   "#006D44",
-//   "#006D44",
-//   "#005390",
-//   "#005390",
-//   "#0000A8",
-//   "#0000A8",
-//   "#8C00BC",
-//   "#8C00BC",
-//   "#CB0772",
-//   "#CB0772",
-//   "#FF7DBC"
-// ];
 
 let loaded_imgs = 0;
 let started = false;
