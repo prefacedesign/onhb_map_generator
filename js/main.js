@@ -5,10 +5,10 @@ var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
   { state: "AL", x: 931, y: 437, el: null, img: null, region: "NE" },
   { state: "AM", x: 301, y: 311, el: null, img: null, region: "N" },
-  { state: "AP", x: 565, y: 171, el: null, img: null, region: "N" },
+  { state: "AP", x: 565, y: 180, el: null, img: null, region: "N" },
   { state: "BA", x: 801, y: 492, el: null, img: null, region: "NE" },
-  { state: "CE", x: 845, y: 324, el: null, img: null, region: "NE" },
-  { state: "DF", x: 657, y: 555, el: null, img: null, region: "CO" },
+  { state: "CE", x: 845, y: 306, el: null, img: null, region: "NE" },
+  { state: "DF", x: 657, y: 560, el: null, img: null, region: "CO" },
   { state: "ES", x: 822, y: 659, el: null, img: null, region: "SE" },
   { state: "GO", x: 606, y: 600, el: null, img: null, region: "CO" },
   { state: "MA", x: 717, y: 326, el: null, img: null, region: "NE" },
@@ -16,17 +16,17 @@ var state_list = [
   { state: "MS", x: 500, y: 677, el: null, img: null, region: "CO" },
   { state: "MT", x: 473, y: 517, el: null, img: null, region: "CO" },
   { state: "PA", x: 545, y: 317, el: null, img: null, region: "N" },
-  { state: "PB", x: 934, y: 364, el: null, img: null, region: "NE" },
+  { state: "PB", x: 934, y: 369, el: null, img: null, region: "NE" },
   { state: "PE", x: 949, y: 403, el: null, img: null, region: "NE" },
   { state: "PI", x: 770, y: 386, el: null, img: null, region: "NE" },
   { state: "PR", x: 577, y: 777, el: null, img: null, region: "S" },
   { state: "RJ", x: 775, y: 726, el: null, img: null, region: "SE" },
   { state: "RN", x: 911, y: 336, el: null, img: null, region: "NE" },
-  { state: "RO", x: 331, y: 466, el: null, img: null, region: "N" },
-  { state: "RR", x: 351, y: 163, el: null, img: null, region: "N" },
+  { state: "RO", x: 315, y: 466, el: null, img: null, region: "N" },
+  { state: "RR", x: 351, y: 150, el: null, img: null, region: "N" },
   { state: "RS", x: 541, y: 893, el: null, img: null, region: "S" },
   { state: "SC", x: 610, y: 842, el: null, img: null, region: "S" },
-  { state: "SE", x: 900, y: 464, el: null, img: null, region: "NE" },
+  { state: "SE", x: 900, y: 469, el: null, img: null, region: "NE" },
   { state: "SP", x: 639, y: 723, el: null, img: null, region: "SE" },
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
 ];
@@ -175,11 +175,11 @@ function draw() {
         let textW = textWidth(element.el.value);
 
         fill(255, 0.75 * 255);
-        textSize(14);
+        textSize(13);
         textW2 = textWidth(element.state);
         let margin_text = 4;
         let x2 = element.x - textW / 2 - textW2 / 2 - margin_text;
-        text(element.state, x2, element.y);
+        text(element.state, x2, element.y - 7);
       }
 
       console.log("p5js has finished drawing the map");
