@@ -161,12 +161,25 @@ function draw() {
       console.log("...and the numbers");
     }
     state_list.forEach(function(element, i) {
+      // draws state name
       if (element.el.value == "") {
+        textSize(24);
         fill(80);
         text(element.state, element.x, element.y);
       } else {
+        // draws number of teams
+        textSize(24);
         fill(255);
         text(element.el.value, element.x, element.y);
+
+        let textW = textWidth(element.el.value);
+
+        fill(255, 0.75 * 255);
+        textSize(14);
+        textW2 = textWidth(element.state);
+        let margin_text = 4;
+        let x2 = element.x - textW / 2 - textW2 / 2 - margin_text;
+        text(element.state, x2, element.y);
       }
 
       console.log("p5js has finished drawing the map");
