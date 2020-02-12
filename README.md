@@ -1,5 +1,5 @@
-# onhb11_map_generator
-p5js script that generates the Facebook/Instagram post showing how many teams per state are participating in the 11th edition of ‘Olimpíada Nacional em História do Brasil’ (which will take place in 2019) overlayed on a map of Brazil.
+# onhb_map_generator
+p5js script that generates the Facebook/Instagram post showing how many teams per state are participating in the 11th edition (and beyond!) of ‘Olimpíada Nacional em História do Brasil’ overlayed on a map of Brazil.
 
 For now it's being hosted at http://mapa_onhb.caluapataca.com/
 
