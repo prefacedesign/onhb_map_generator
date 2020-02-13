@@ -1,5 +1,6 @@
 var canvas;
-let debug = true;
+let debug = false;
+let theme = "";
 
 var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
@@ -91,7 +92,22 @@ function preload() {
       element.el.value = v;
     }
   });
-  brazil = loadImage("assets/brazil.png");
+  let combo = document.getElementById("theme-combo");
+  theme = combo.value;
+
+  brazil = {
+    onhb11: [null, false],
+    onhb12: [false, null],
+    onhb12_embaixadores: [false, null]
+  };
+
+  loadImage("assets/embaixadores-2020.png", img => {
+    brazil.onhb12[1] = img;
+    brazil.onhb12_embaixadores[1] = img;
+  });
+  loadImage("assets/brazil.png", img => {
+    brazil.onhb11[0] = img;
+  });
 }
 
 function setup() {
@@ -137,7 +153,10 @@ function draw() {
     if (debug) {
       console.log("...the background image...");
     }
-    image(brazil, 0, 0);
+
+    if (brazil[theme][0]) {
+      image(brazil[theme][0], 0, 0);
+    }
 
     // background color
     if (debug) {
@@ -156,6 +175,12 @@ function draw() {
         }
       }
     });
+    tint(255, 255);
+
+    if (brazil[theme][1]) {
+      image(brazil[theme][1], 0, 0);
+    }
+
     // numbers
     if (debug) {
       console.log("...and the numbers");
@@ -183,6 +208,7 @@ function draw() {
       }
 
       console.log("p5js has finished drawing the map");
+
       if (document.getElementById("save-button").disabled) {
         document.getElementById("save-button").disabled = false;
       }
