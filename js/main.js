@@ -29,7 +29,7 @@ var state_list = [
   { state: "SC", x: 610, y: 842, el: null, img: null, region: "S" },
   { state: "SE", x: 900, y: 469, el: null, img: null, region: "NE" },
   { state: "SP", x: 639, y: 723, el: null, img: null, region: "SE" },
-  { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" }
+  { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" },
 ];
 
 let colors = [
@@ -53,7 +53,7 @@ let colors = [
   "#BF086F",
 
   "#CB0772",
-  "#FD7FBB"
+  "#FD7FBB",
 ];
 
 let loaded_imgs = 0;
@@ -64,7 +64,7 @@ let tints = {
   NE: [255, 38, 150],
   CO: [255, 38, 150],
   SE: [255, 38, 150],
-  S: [255, 38, 150]
+  S: [255, 38, 150],
 };
 
 let myFont;
@@ -72,8 +72,8 @@ let brazil;
 
 function preload() {
   myFont = loadFont("assets/CooperHewitt-Bold.otf");
-  state_list.forEach(function(element) {
-    element.img = loadImage("assets/" + element.state + ".png", img => {
+  state_list.forEach(function (element) {
+    element.img = loadImage("assets/" + element.state + ".png", (img) => {
       loaded_imgs++;
 
       // has loaded all images
@@ -98,15 +98,22 @@ function preload() {
   brazil = {
     onhb11: [null, false],
     onhb12: [false, null],
-    onhb12_embaixadores: [false, null]
+    onhb12_embaixadores: [false, null],
+    preonhb: [false, false],
   };
 
-  loadImage("assets/embaixadores-2020.png", img => {
+  loadImage("assets/embaixadores-2020.png", (img) => {
     brazil.onhb12[1] = img;
     brazil.onhb12_embaixadores[1] = img;
   });
-  loadImage("assets/brazil.png", img => {
+  loadImage("assets/onhb-11.png", (img) => {
     brazil.onhb11[0] = img;
+  });
+  loadImage("assets/preonhb-under.png", (img) => {
+    brazil.preonhb[0] = img;
+  });
+  loadImage("assets/preonhb-over.png", (img) => {
+    brazil.preonhb[1] = img;
   });
 }
 
@@ -147,7 +154,6 @@ function draw() {
       console.log("will begin drawing the map...");
     }
     background(0);
-    let max = findMax();
     tint(255, 255);
 
     if (debug) {
@@ -164,7 +170,7 @@ function draw() {
     }
 
     state_list.sort(compareStates);
-    state_list.forEach(function(element, i) {
+    state_list.forEach(function (element, i) {
       i_color = Math.floor(
         convertRange(i, 0, state_list.length, 0, colors.length)
       );
@@ -185,7 +191,7 @@ function draw() {
     if (debug) {
       console.log("...and the numbers");
     }
-    state_list.forEach(function(element, i) {
+    state_list.forEach(function (element, i) {
       // draws state name
       if (element.el.value == "") {
         textSize(24);
@@ -223,7 +229,7 @@ function draw() {
 function canDraw() {
   let can_draw = true;
 
-  state_list.forEach(function(element) {
+  state_list.forEach(function (element) {
     if (!element.img) {
       can_draw = false;
       console.log("couldn't draw " + element.state);
@@ -251,9 +257,9 @@ function findMax() {
     CO: 0,
     SE: 0,
     S: 0,
-    geral: 0
+    geral: 0,
   };
-  state_list.forEach(function(element) {
+  state_list.forEach(function (element) {
     if (element.el) {
       if (isNumeric(element.el.value)) {
         let v = parseInt(element.el.value);
@@ -275,9 +281,9 @@ function calcSum() {
     NE: 0,
     CO: 0,
     SE: 0,
-    S: 0
+    S: 0,
   };
-  state_list.forEach(function(element) {
+  state_list.forEach(function (element) {
     if (element.el) {
       if (isNumeric(element.el.value)) {
         s[element.region] += parseInt(element.el.value);
