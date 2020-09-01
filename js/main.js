@@ -103,7 +103,6 @@ function preload() {
   };
 
   loadImage("assets/embaixadores-2020.png", (img) => {
-    brazil.onhb12[1] = img;
     brazil.onhb12_embaixadores[1] = img;
   });
   loadImage("assets/onhb-11.png", (img) => {
@@ -114,6 +113,9 @@ function preload() {
   });
   loadImage("assets/preonhb-over.png", (img) => {
     brazil.preonhb[1] = img;
+  });
+  loadImage("assets/onhb12-under.png", (img) => {
+    brazil.onhb12[0] = img;
   });
 }
 
