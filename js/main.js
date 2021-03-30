@@ -98,6 +98,7 @@ function preload() {
   brazil = {
     onhb11: [null, false],
     onhb12: [false, null],
+    onhb13: [null, null],
     onhb12_embaixadores: [false, null],
     preonhb: [false, false],
   };
@@ -116,6 +117,12 @@ function preload() {
   });
   loadImage("assets/onhb12-under.png", (img) => {
     brazil.onhb12[0] = img;
+  });
+  loadImage("assets/onhb13-under.png", (img) => {
+    brazil.onhb13[0] = img;
+  });
+  loadImage("assets/onhb13-over.png", (img) => {
+    brazil.onhb13[1] = img;
   });
 }
 
