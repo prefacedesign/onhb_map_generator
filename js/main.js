@@ -103,21 +103,21 @@ function preload() {
     preonhb: [false, false],
   };
 
-  loadImage("assets/embaixadores-2020.png", (img) => {
-    brazil.onhb12_embaixadores[1] = img;
-  });
-  loadImage("assets/onhb-11.png", (img) => {
-    brazil.onhb11[0] = img;
-  });
-  loadImage("assets/preonhb-under.png", (img) => {
-    brazil.preonhb[0] = img;
-  });
-  loadImage("assets/preonhb-over.png", (img) => {
-    brazil.preonhb[1] = img;
-  });
-  loadImage("assets/onhb12-under.png", (img) => {
-    brazil.onhb12[0] = img;
-  });
+  // loadImage("assets/embaixadores-2020.png", (img) => {
+  //   brazil.onhb12_embaixadores[1] = img;
+  // });
+  // loadImage("assets/onhb-11.png", (img) => {
+  //   brazil.onhb11[0] = img;
+  // });
+  // loadImage("assets/preonhb-under.png", (img) => {
+  //   brazil.preonhb[0] = img;
+  // });
+  // loadImage("assets/preonhb-over.png", (img) => {
+  //   brazil.preonhb[1] = img;
+  // });
+  // loadImage("assets/onhb12-under.png", (img) => {
+  //   brazil.onhb12[0] = img;
+  // });
   loadImage("assets/onhb13-under.png", (img) => {
     brazil.onhb13[0] = img;
   });
