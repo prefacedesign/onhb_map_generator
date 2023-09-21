@@ -32,30 +32,6 @@ var state_list = [
   { state: "TO", x: 652, y: 455, el: null, img: null, region: "N" },
 ];
 
-let colors = [
-  "#10103A",
-  "#1C0F3E",
-  "#270F41",
-  "#330E45",
-  "#330E45",
-  "#4A0D4C",
-  "#4A0D4C",
-  "#560D4F",
-  "#620C53",
-  "#6E0C56",
-  "#790B5A",
-  "#790B5A",
-  "#850A5D",
-  "#910A61",
-  "#9C0964",
-  "#A80968",
-  "#B4086B",
-  "#BF086F",
-
-  "#CB0772",
-  "#FD7FBB",
-];
-
 let loaded_imgs = 0;
 let started = false;
 
@@ -196,12 +172,14 @@ function draw() {
 
     state_list.sort(compareStates);
     state_list.forEach(function (element, i) {
-      i_color = Math.floor(
-        convertRange(i, 0, state_list.length, 0, colors.length)
-      );
+      i_color = i / (state_list.length - 1);
       if (element.el.value != "") {
         if (element.img && isNumeric(element.el.value)) {
-          tint(color(colors[i_color]));
+          if (i_color < 1) {
+            tint(lerpColor(color('#10103A'), color('#cb0072'), i_color));
+          } else {
+            tint(color('#FD7FBB'));
+          }
           image(element.img, 0, 0);
         }
       }
