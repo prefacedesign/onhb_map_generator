@@ -102,6 +102,7 @@ function preload() {
     onhb14: [null, false],
     onhba_1: [null, false],
     onhba_2: [null, null],
+    onhba_3: [null, null],
     onhb12_embaixadores: [false, null],
     preonhb: [false, false],
   };
@@ -133,11 +134,11 @@ function preload() {
   // loadImage("assets/onhb14-under.png", (img) => {
   //   brazil.onhb14[0] = img;
   // });
-  loadImage("assets/onhba2-under.png", (img) => {
-    brazil.onhba_2[0] = img;
+  loadImage("assets/onhba3-under.png", (img) => {
+    brazil.onhba_3[0] = img;
   });
-  loadImage("assets/onhba2-over.png", (img) => {
-    brazil.onhba_2[1] = img;
+  loadImage("assets/onhba3-over.png", (img) => {
+    brazil.onhba_3[1] = img;
   });
 }
 
