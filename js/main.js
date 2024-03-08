@@ -76,6 +76,7 @@ function preload() {
     onhb12: [false, null],
     onhb13: [null, null],
     onhb14: [null, false],
+    onhb16: [null, false],
     onhba_1: [null, false],
     onhba_2: [null, null],
     onhba_3: [false, null],
@@ -113,8 +114,11 @@ function preload() {
   // loadImage("assets/onhba3-under.png", (img) => {
   //   brazil.onhba_3[0] = img;
   // });
-  loadImage("assets/onhba3-over.png", (img) => {
-    brazil.onhba_3[1] = img;
+  // loadImage("assets/onhba3-over.png", (img) => {
+  //   brazil.onhba_3[1] = img;
+  // });
+  loadImage("assets/onhba16-over.png", (img) => {
+    brazil.onhb16[1] = img;
   });
 }
 
