@@ -80,7 +80,8 @@ function preload() {
     onhba_1: [null, false],
     onhba_2: [null, null],
     onhba_3: [false, null],
-    onhb12_embaixadores: [false, null],
+    onhba_4: [false, null],
+    onhb12_embaixadores: [null, false],
     preonhb: [false, false],
   };
 
@@ -117,8 +118,11 @@ function preload() {
   // loadImage("assets/onhba3-over.png", (img) => {
   //   brazil.onhba_3[1] = img;
   // });
-  loadImage("assets/onhba16-over.png", (img) => {
-    brazil.onhb16[1] = img;
+  // loadImage("assets/onhba16-over.png", (img) => {
+  //   brazil.onhb16[1] = img;
+  // });
+  loadImage("assets/onhb-a4.png", (img) => {
+    brazil.onhba_4[0] = img;
   });
 }
 
