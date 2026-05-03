@@ -2,6 +2,11 @@ var canvas;
 let debug = false;
 let theme = "";
 
+var offset = {
+  x: 50,
+  y: 170,
+};
+
 var state_list = [
   { state: "AC", x: 143, y: 419, el: null, img: null, region: "N" },
   { state: "AL", x: 931, y: 437, el: null, img: null, region: "NE" },
@@ -78,6 +83,7 @@ function preload() {
     onhb14: [null, false],
     onhb16: [null, false],
     onhb17: [null, false],
+    onhb18: [null, false],
     onhba_1: [null, false],
     onhba_2: [null, null],
     onhba_3: [false, null],
@@ -125,13 +131,13 @@ function preload() {
   // loadImage("assets/onhb-a4.png", (img) => {
   //   brazil.onhba_4[0] = img;
   // });
-  loadImage("assets/onhb17-under.png", (img) => {
-    brazil.onhb17[0] = img;
+  loadImage("assets/onhb18-under.png", (img) => {
+    brazil.onhb18[0] = img;
   });
 }
 
 function setup() {
-  canvas = createCanvas(1080, 1080);
+  canvas = createCanvas(1080, 1350);
   canvas.class("canv");
   textAlign(CENTER);
   textFont(myFont);
@@ -192,7 +198,7 @@ function draw() {
           } else {
             tint(color('#FD7FBB'));
           }
-          image(element.img, 0, 0);
+          image(element.img, offset.x, offset.y);
         }
       }
     });
@@ -211,12 +217,12 @@ function draw() {
       if (element.el.value == "") {
         textSize(24);
         fill(80);
-        text(element.state, element.x, element.y);
+        text(element.state, element.x + offset.x, element.y + offset.y);
       } else {
         // draws number of teams
         textSize(24);
         fill(255);
-        text(element.el.value, element.x, element.y);
+        text(element.el.value, element.x + offset.x, element.y + offset.y);
 
         let textW = textWidth(element.el.value);
 
@@ -225,7 +231,7 @@ function draw() {
         textW2 = textWidth(element.state);
         let margin_text = 4;
         let x2 = element.x - textW / 2 - textW2 / 2 - margin_text;
-        text(element.state, x2, element.y - 7);
+        text(element.state, x2 + offset.x, element.y - 7 + offset.y);
       }
 
       console.log("p5js has finished drawing the map");
