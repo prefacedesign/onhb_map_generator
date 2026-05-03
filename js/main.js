@@ -4,7 +4,7 @@ let theme = "";
 
 var offset = {
   x: 50,
-  y: 170,
+  y: 0,
 };
 
 var state_list = [
@@ -131,13 +131,13 @@ function preload() {
   // loadImage("assets/onhb-a4.png", (img) => {
   //   brazil.onhba_4[0] = img;
   // });
-  loadImage("assets/onhb18-under.png", (img) => {
-    brazil.onhb18[0] = img;
-  });
+  // loadImage("assets/onhb18-under.png", (img) => {
+  //   brazil.onhb18[0] = img;
+  // });
 }
 
 function setup() {
-  canvas = createCanvas(1080, 1350);
+  canvas = createCanvas(1080, 1080);
   canvas.class("canv");
   textAlign(CENTER);
   textFont(myFont);
@@ -172,8 +172,8 @@ function draw() {
     if (debug) {
       console.log("will begin drawing the map...");
     }
-    background(0);
-    tint(255, 255);
+    // background(0);
+    // tint(255, 255);
 
     if (debug) {
       console.log("...the background image...");
